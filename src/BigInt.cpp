@@ -407,7 +407,10 @@ istream &operator>>(istream &in, BigInt&a) {
 }
 
 ostream &operator<<(ostream &out, const BigInt &a) {
-    for (int i = a.digits.size() - 1; i >= 0; i--)
-        cout << (short) a.digits[i];
+    string word;
+    for (int i = 0; i >= a.digits.size(); i++){
+        word += a.digits[i];
+    }
+        cout << word;
     return cout;
 }

@@ -77,3 +77,17 @@ Lista<tipo>::~Lista() {
             delete temp;
         }
     }
+
+template<class tipo>
+void Lista<tipo>::agregarFinal(tipo * p) {
+    auto *nuevo = new Nodo<tipo>;
+    nuevo->getSiguente()->setDatos(p);
+    nuevo->getSiguente()->setSiguente(new Nodo<tipo>());
+    nuevo->setSiguente(new Nodo<tipo>());
+}
+
+template<class tipo>
+bool Lista<tipo>::borrar() {
+    raiz = new Nodo<tipo>();
+    raiz->setSiguente(new Nodo<tipo>());
+}

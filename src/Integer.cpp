@@ -20,7 +20,7 @@ int Integer::strToInt(std::string str){
     int i=0;
     while (str[i] != '\0'){
         if(str[i]<48 || str[i]>57){
-            throw RuntimeExcetion("Erro: No se pueden ingresar caracteres distintos a numeros!!");
+            throw RuntimeExcetion("Error: No se pueden ingresar caracteres distintos a numeros!!");
         }
         else {
             number= number*10 + (str[i]-48);
@@ -84,9 +84,9 @@ string Integer::calcularSuma(char n1 [], char n2 [], char s []){
 }
 
 //Direct assignment
-Integer &Integer::operator=(Integer &b) {
-    this->setCharacters(b.getCharacters());
-    this->setSize(b.getSize());
+Integer &Integer::operator=(char* &b) {
+    this->setCharacters(b);
+    this->setSize(this->characters.size());
     return *this;
 }
 
@@ -123,10 +123,8 @@ Integer Integer::operator +=(Integer &b){
     return *this;*/
 }
 Integer Integer::operator+(Integer &b) {
-    Integer temp;
-    temp = *this;
-    temp += b;
-    return temp;
+    *this += b;
+    return *this;
     /*int maxTam= maximo(this->size, b.size);
     char n1[this->size], n2[b.size], s[maxTam+1];
     for(int i=maxTam+1;i>=maxTam+1;i--){
@@ -202,3 +200,40 @@ Integer Integer::operator-(Integer&b) {
     return temp;
 }
 
+ostream &operator<<(ostream &out, const Integer &a) {
+    string word;
+    for (int i = 0; a.characters[i] != '\0'; i++){
+        word += a.characters[i];
+    }
+    out << word;
+    return out;
+}
+
+int Integer::length(Integer a) {
+    int iterator = 0;
+    for(auto charElement : a.characters){
+        iterator++;
+    }
+    return iterator;
+}
+
+Integer &operator+=( Integer &a, const Integer &b) {
+    int t = 0, s, i;
+    int n = a.length(a);
+    int m = b.length(b);
+
+    if (m > n)
+        a.characters.append(m - n, 0);
+    n = a.length(a);
+    for (i = 0; i < n; i++) {
+        if (i < m)
+            s = (a.characters[i] + b.characters[i]) + t;
+        else
+            s = a.characters[i] + t;
+        t = s / 10;
+        a.characters[i] = (s % 10);
+    }
+    if (t)
+        a.characters.push_back(t);
+    return a;
+}

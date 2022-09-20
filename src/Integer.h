@@ -25,19 +25,19 @@ public:
 
     virtual ~Integer();
 
-    int strToInt(std::string str);
+    static int strToInt(std::string str);
 
     const string &getCharacters() const;
     void setCharacters(const string &characters);
     int getSize() const;
     void setSize(int size);
 
-    int maximo(int a, int b);
-    void invertirCadena(char  cadena[]);
-    string calcularSuma(char n1 [], char n2 [], char s []);
+    static int maximo(int a, int b);
+    static void invertirCadena(char  cadena[]);
+    static string calcularSuma(char n1 [], char n2 [], char s []);
 
     //Direct assignment
-    Integer &operator=(Integer &b);
+    Integer &operator=(char* &b);
 
     //Addition and Subtraction
     //Suma
@@ -52,6 +52,10 @@ public:
     friend Integer operator*(const Integer &, const Integer &);
     friend Integer &operator/=(Integer &, const Integer &);
     friend Integer operator/(const Integer &, const Integer &);
+
+    friend ostream &operator<<(ostream &, const Integer &);
+    friend Integer& operator+=(Integer &a, const Integer &b);
+    static int length(Integer);
 
 };
 

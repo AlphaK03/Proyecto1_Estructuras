@@ -1,25 +1,47 @@
 #include<iostream>
 #include<stdlib.h>
 #include<sstream>
+#include "vector"
 using namespace std;
 #include "Integer.h"
 #include "OperacionesBasicas.h"
 #include "Integer.h"
+#include "Lista.h"
 int main() {
- Integer integer1("100");
- Integer integer2("20");
- Integer integer3;
- integer3=integer1;
- cout<<"=: "<<integer3.getCharacters()<<endl;
- integer1+=integer2;
- cout<<"+=: "<<integer1.characters<<endl;
- cout<<"+: "<<(integer1+integer2).characters;
+ Integer integer1("1007004700091777777777777777777777777777777777777778888");
+ string a = integer1.getCharacters();
 
 
- integer1.setCharacters("3");
- integer2.setCharacters("100");
- integer1-=integer2;
- cout<<"-=: "<<integer1.characters<<endl;
+    vector<vector<long>> vectorPrincipal;
+
+    while (a[0] != '\0') {
+        vector<long> tempVect;
+        for(int i = 0; i < 3; i++){
+            if(a.empty()){
+                break;
+            }
+            tempVect.push_back(long (a[0]) - 48);
+            a.erase(a.begin());
+
+
+        }
+        vectorPrincipal.push_back(tempVect);
+        tempVect.clear();
+    }
+
+    string prueba;
+    for(auto & i : vectorPrincipal){
+        for(auto vect : i){
+            prueba += to_string(vect);
+        }
+    }
+
+
+    integer1 = prueba;
+
+    cout << integer1;
+
+
 
     return 0;
 }

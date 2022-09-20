@@ -17,7 +17,8 @@ public:
     tipo * inicio();
     void borraInicio();
     void agregarInicio(tipo*);
-    //void agregarFinal(tipo*);
+    void agregarFinal(tipo*);
+    bool borrar();
     //bool borrar(tipo*,string &)
 
 
